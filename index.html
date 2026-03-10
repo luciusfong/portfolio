@@ -389,21 +389,6 @@
       color: var(--teal);
     }
 
-    /* ── REPO STRUCTURE ── */
-    .repo-tree {
-      background: var(--code-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.8rem;
-      font-family: 'Space Mono', monospace;
-      font-size: .78rem;
-      line-height: 2;
-      color: var(--text);
-    }
-    .repo-tree .dir { color: var(--amber); }
-    .repo-tree .file { color: #7ec8a0; }
-    .repo-tree .muted { color: var(--muted); }
-
     /* ── FUTURE ── */
     .future-item {
       background: var(--surface);
@@ -521,27 +506,6 @@
         </div>
       </div>
 
-      <div class="col-lg-6 fade-up fade-up-2">
-        <div class="arch-card">
-          <pre class="mb-0" style="color:inherit">
-<span class="amber">// Node.js Clean Architecture</span>
-<span class="teal">Request</span>
-   ↓
-<span class="amber">Middleware</span> <span class="muted">[ JWT · Validator · Redis ]</span>
-   ↓
-<span class="teal">Controller</span>
-   ↓
-<span class="amber">Service Layer</span> <span class="muted">[ Notification · Email ]</span>
-   ↓
-<span class="teal">Interface Layer</span>
-   ↓
-<span class="amber">DAO Layer</span>
-   ↓
-<span class="teal">Prisma ORM</span> → <span class="amber">Database</span>
-   ↓
-<span class="teal">Response</span> <span class="muted">[ JSON / File ]</span></pre>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -929,41 +893,97 @@
 
     </div>
 
+        
+      
     <!-- Repo Structure -->
     <div class="row g-4 align-items-start">
-      <div class="col-lg-5">
+      <div class="col-lg-4">
         <h5 style="font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;">
           // Repository Structure
         </h5>
-        <div class="repo-tree">
-<span class="dir">backend-project/</span>
-│
-├── <span class="dir">src/</span>
-│   ├── <span class="dir">controllers/</span>
-│   ├── <span class="dir">services/</span>
-│   ├── <span class="dir">interfaces/</span>
-│   ├── <span class="dir">dao/</span>
-│   ├── <span class="dir">middleware/</span>
-│   ├── <span class="dir">routes/</span>
-│   ├── <span class="dir">utils/</span>
-│   └── <span class="dir">config/</span>
-│
-├── <span class="dir">prisma/</span>
-│   └── <span class="file">schema.prisma</span>
-│
-├── <span class="dir">tests/</span>
-├── <span class="dir">docker/</span>
-├── <span class="dir">deployment/</span>
-│   └── <span class="file">deployment.yml</span>
-│
-├── <span class="dir">docs/</span>
-│   └── <span class="file">architecture.md</span>
-│
-└── <span class="file">README.md</span>
+        <div class="arch-card">
+          <pre class="mb-0" style="color:inherit">
+            <span class="teal">backend-project/</span>
+            <span class="teal">│</span>
+            <span class="teal">├── src/</span>
+            <span class="teal">│   └── const/</span>
+            <span class="teal">│   │   └── entity/</span>
+            <span class="teal">│   │   └── logic/</span>
+            <span class="teal">│   │   └── responseMessage/</span>
+            <span class="teal">│   │   └── selector/</span>
+            <span class="teal">│   │</span>
+            <span class="teal">│   └── controllers/</span>
+            <span class="teal">│   │   └── modules/</span>
+            <span class="amber">│   │       └── dao</span>
+            <span class="amber">│   │       └── interface</span>
+            <span class="amber">│   │       └── businessLogic</span>
+            <span class="teal">│   │</span>
+            <span class="teal">│   ├── services/</span>
+            <span class="teal">│   │</span>
+            <span class="teal">│   ├── middleware/</span>
+            <span class="teal">│   │   └── validator</span>
+            <span class="teal">│   │   └── timezoneHandler</span>
+            <span class="teal">│   │   └── scopeHandler</span>
+            <span class="teal">│   │   └── languageHandler</span>
+            <span class="teal">│   │   └── emailHandler</span>
+            <span class="teal">│   │   └── notificationHandler</span>
+            <span class="teal">│   │   └── errorHandler</span>
+            <span class="teal">│   │</span>
+            <span class="teal">│   └── routes/</span>
+            <span class="teal">│   │   └── web</span>
+            <span class="teal">│   │   └── app</span>
+            <span class="teal">│   │   └── common</span>
+            <span class="teal">│   └── utils/</span>
+            <span class="teal">│   └── config/</span>
+            <span class="teal">│</span>
+            <span class="teal">├── locales/</span>
+            <span class="teal">├── schedulers/</span>
+            <span class="teal">│</span>
+            <span class="teal">├── prisma-shared/</span>
+            <span class="teal">│   └── prisma</span>
+            <span class="teal">│       └── migrations</span>
+            <span class="teal">│       └── seeder</span>
+            <span class="amber">│       └── schema.prisma</span>
+            <span class="teal">│</span>
+            <span class="teal">├── deployment/</span>
+            <span class="amber">│   └── deployment.yml</span>
+            <span class="teal">│</span>
+            <span class="amber">└── .env</span>
+            <span class="amber">└── .gitignore</span>
+            <span class="amber">└── .gitmodule</span>
+            <span class="amber">└── .pretierrc</span>
+            <span class="amber">└── tsconfig.json</span>
+            <span class="amber">└── package.json</span>
+            <span class="amber">└── ecosystem.config.js</span>
+            <span class="amber">└── eslint.config.mjs</span>
+            <span class="amber">└── firebase-service-account.json</span>
+            <span class="amber">└── README.md</span></pre>
         </div>
       </div>
-
-      <div class="col-lg-7">
+<div class="col-lg-4 fade-up fade-up-2">
+        <h5 style="font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;">
+          // Node.js Clean Architecture
+        </h5>
+        <div class="arch-card">
+          <pre class="mb-0" style="color:inherit">
+            <span class="teal">Request</span>
+            ↓
+            <span class="amber">Middleware</span> <span class="muted">[ JWT · Validator · Redis ]</span>
+            ↓
+            <span class="teal">Controller</span>
+            ↓
+            <span class="amber">Service Layer</span> <span class="muted">[ Notification · Email ]</span>
+            ↓
+            <span class="teal">Interface Layer</span>
+            ↓
+            <span class="amber">DAO Layer</span>
+            ↓
+            <span class="teal">Prisma ORM</span> → <span class="amber">Database</span>
+            ↓
+            <span class="teal">Response</span> <span class="muted">[ JSON / File ]</span></pre>
+        </div>
+      </div>
+      <div class="col-lg-4">
         <h5 style="font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;">
           // System Overview
         </h5>
@@ -1087,11 +1107,11 @@
         PHP · Laravel · Node.js · TypeScript · AWS · MySQL
       </div>
       <div class="d-flex gap-3">
-        <a href="https://github.com" target="_blank" style="color:var(--muted);font-size:1.2rem;transition:color .2s;"
+        <a href="https://github.com/luciusfong" target="_blank" style="color:var(--muted);font-size:1.2rem;transition:color .2s;"
           onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--muted)'">
           <i class="bi bi-github"></i>
         </a>
-        <a href="https://linkedin.com" target="_blank" style="color:var(--muted);font-size:1.2rem;transition:color .2s;"
+        <a href="https://www.linkedin.com/in/terry-hng-zu-lun" target="_blank" style="color:var(--muted);font-size:1.2rem;transition:color .2s;"
           onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--muted)'">
           <i class="bi bi-linkedin"></i>
         </a>

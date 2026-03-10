@@ -1,45 +1,1139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Backend Engineer Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Backend Engineering Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #0b0e14;
+      --surface:   #111722;
+      --border:    #1e2a3a;
+      --amber:     #f5a623;
+      --amber-dim: #c4821a;
+      --teal:      #00c9b1;
+      --text:      #e8edf4;
+      --muted:     #6b7a91;
+      --code-bg:   #0d1520;
+    }
 
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+      opacity: 0.35;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: rgba(11,14,20,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+    .navbar-brand {
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+      color: var(--amber) !important;
+      font-size: 1.05rem;
+      letter-spacing: .02em;
+    }
+    .navbar-brand span { color: var(--teal); }
+    .nav-link {
+      font-size: .82rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted) !important;
+      transition: color .25s;
+    }
+    .nav-link:hover { color: var(--amber) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 0 4rem;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: .35;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,166,35,.12) 0%, transparent 70%);
+      top: -200px; right: -200px;
+      pointer-events: none;
+    }
+    .hero-label {
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 .accent { color: var(--amber); }
+    .hero p.lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.2rem;
+    }
+    .btn-amber {
+      background: var(--amber);
+      color: #000;
+      font-family: 'Space Mono', monospace;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border: none;
+      padding: .7rem 1.6rem;
+      border-radius: 3px;
+      transition: background .25s, transform .2s;
+    }
+    .btn-amber:hover { background: var(--amber-dim); color: #000; transform: translateY(-2px); }
+    .btn-outline-teal {
+      background: transparent;
+      color: var(--teal);
+      border: 1px solid var(--teal);
+      font-family: 'Space Mono', monospace;
+      font-size: .8rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .7rem 1.6rem;
+      border-radius: 3px;
+      transition: background .25s, color .25s;
+    }
+    .btn-outline-teal:hover { background: var(--teal); color: #000; }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--amber);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: .25rem;
+    }
+
+    /* ── ARCHITECTURE DIAGRAM ── */
+    .arch-card {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.6rem 1.8rem;
+      font-family: 'Space Mono', monospace;
+      font-size: .72rem;
+      line-height: 1.9;
+      color: #7ec8a0;
+      position: relative;
+      overflow: hidden;
+    }
+    .arch-card::before {
+      content: 'SYSTEM ARCHITECTURE';
+      position: absolute; top: 10px; right: 14px;
+      font-size: .6rem;
+      letter-spacing: .15em;
+      color: var(--border);
+    }
+    .arch-card .amber { color: var(--amber); }
+    .arch-card .teal  { color: var(--teal); }
+    .arch-card .muted { color: var(--muted); }
+
+    /* ── SECTION HEADERS ── */
+    section { position: relative; z-index: 1; }
+    .section-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: .6rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: .5rem;
+    }
+    .section-title .accent { color: var(--amber); }
+    .section-divider {
+      width: 48px; height: 3px;
+      background: var(--amber);
+      margin-bottom: 3rem;
+      border-radius: 2px;
+    }
+
+    /* ── SKILLS ── */
+    .skill-category {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      height: 100%;
+      transition: border-color .3s, transform .3s;
+    }
+    .skill-category:hover {
+      border-color: var(--amber);
+      transform: translateY(-4px);
+    }
+    .skill-cat-icon {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: rgba(245,166,35,.12);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--amber);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .skill-cat-title {
+      font-size: .75rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .8rem;
+      font-family: 'Space Mono', monospace;
+    }
+    .skill-pill {
+      display: inline-block;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: .2rem .65rem;
+      font-size: .78rem;
+      font-family: 'Space Mono', monospace;
+      color: var(--text);
+      margin: .2rem .15rem;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+    .skill-pill:hover { background: rgba(245,166,35,.1); border-color: var(--amber); color: var(--amber); }
+
+    /* ── PROJECT CARDS ── */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      height: 100%;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--amber);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(0,0,0,.45);
+    }
+    .project-card-header {
+      padding: 1.4rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .project-num {
+      font-family: 'Space Mono', monospace;
+      font-size: .7rem;
+      color: var(--amber);
+      letter-spacing: .1em;
+      white-space: nowrap;
+      padding-top: .1rem;
+    }
+    .project-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .3rem;
+      line-height: 1.3;
+    }
+    .project-body { padding: 1.2rem 1.5rem; flex: 1; }
+    .project-desc { font-size: .88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+    .project-tech {
+      display: flex; flex-wrap: wrap; gap: .3rem;
+      margin-bottom: 1rem;
+    }
+    .tech-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: .04em;
+      padding: .18rem .6rem;
+      border-radius: 3px;
+      background: rgba(0,201,177,.08);
+      color: var(--teal);
+      border: 1px solid rgba(0,201,177,.25);
+    }
+    .project-features { list-style: none; padding: 0; margin: 0; }
+    .project-features li {
+      font-size: .82rem;
+      color: var(--muted);
+      padding: .2rem 0;
+      display: flex; align-items: flex-start; gap: .5rem;
+    }
+    .project-features li::before {
+      content: '→';
+      color: var(--amber);
+      font-family: 'Space Mono', monospace;
+      flex-shrink: 0;
+      margin-top: .02rem;
+    }
+
+    /* ── ARCH FLOW ── */
+    .flow-card {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.4rem;
+      height: 100%;
+    }
+    .flow-title {
+      font-family: 'Space Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+      padding-bottom: .6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .flow-step {
+      display: flex; align-items: center; gap: .6rem;
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      color: var(--text);
+      padding: .22rem 0;
+    }
+    .flow-arrow {
+      display: flex; align-items: center; gap: .6rem;
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      color: var(--muted);
+      padding: .04rem 0 .04rem 1.2rem;
+    }
+    .flow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+
+    /* ── PRACTICES ── */
+    .practice-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.4rem 1.5rem;
+      height: 100%;
+      transition: border-color .3s;
+    }
+    .practice-card:hover { border-color: var(--teal); }
+    .practice-icon {
+      font-size: 1.4rem;
+      color: var(--teal);
+      margin-bottom: .8rem;
+    }
+    .practice-title {
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: .6rem;
+    }
+    .practice-list { list-style: none; padding: 0; margin: 0; }
+    .practice-list li {
+      font-size: .82rem;
+      color: var(--muted);
+      padding: .15rem 0;
+      display: flex; gap: .5rem;
+    }
+    .practice-list li::before {
+      content: '–';
+      color: var(--teal);
+    }
+
+    /* ── REPO STRUCTURE ── */
+    .repo-tree {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.8rem;
+      font-family: 'Space Mono', monospace;
+      font-size: .78rem;
+      line-height: 2;
+      color: var(--text);
+    }
+    .repo-tree .dir { color: var(--amber); }
+    .repo-tree .file { color: #7ec8a0; }
+    .repo-tree .muted { color: var(--muted); }
+
+    /* ── FUTURE ── */
+    .future-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.2rem;
+      display: flex; align-items: center; gap: 1rem;
+      transition: background .25s;
+    }
+    .future-item:hover { background: rgba(245,166,35,.06); }
+    .future-icon { color: var(--amber); font-size: 1.1rem; flex-shrink: 0; }
+    .future-title { font-size: .9rem; font-weight: 700; margin-bottom: .15rem; }
+    .future-sub { font-size: .78rem; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0;
+    }
+    footer .mono {
+      font-family: 'Space Mono', monospace;
+      font-size: .8rem;
+      color: var(--muted);
+    }
+    footer .mono .amber { color: var(--amber); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp .6s ease both; }
+    .fade-up-1 { animation-delay: .1s; }
+    .fade-up-2 { animation-delay: .22s; }
+    .fade-up-3 { animation-delay: .34s; }
+    .fade-up-4 { animation-delay: .46s; }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .cursor {
+      display: inline-block;
+      width: 3px; height: 1em;
+      background: var(--amber);
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+      margin-left: 2px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:768px) {
+      .hero { min-height: auto; padding: 7rem 0 4rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
-<div class="container">
-<a class="navbar-brand">Backend Engineer Portfolio</a>
-</div>
+<!-- ─────────────── NAVBAR ─────────────── -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <span>&lt;</span>backend.dev<span>/&gt;</span>
+    </a>
+    <button class="navbar-toggler border-0 text-light" type="button"
+      data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="bi bi-list fs-4"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#practices">Practices</a></li>
+        <li class="nav-item"><a class="nav-link" href="#future">Future</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
 
-<section class="container mt-5">
+<!-- ─────────────── HERO ─────────────── -->
+<section class="hero" id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="container position-relative">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6">
+        <p class="hero-label fade-up">// Backend Engineer</p>
+        <h1 class="fade-up fade-up-1">
+          Scalable<br/>Systems &amp;<br/><span class="accent">Clean Arch.</span>
+        </h1>
+        <p class="lead fade-up fade-up-2">
+          Designing IoT integrations, cloud infrastructure, and API-first backends
+          using modern frameworks and layered architecture principles.
+        </p>
+        <div class="d-flex flex-wrap gap-3 fade-up fade-up-3">
+          <a href="#projects" class="btn-amber">View Projects</a>
+          <a href="#skills" class="btn-outline-teal">Technical Skills</a>
+        </div>
+        <div class="hero-stats fade-up fade-up-4">
+          <div>
+            <div class="hero-stat-num">6+</div>
+            <div class="hero-stat-label">Projects</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">5+</div>
+            <div class="hero-stat-label">Tech Stacks</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">AWS</div>
+            <div class="hero-stat-label">Cloud Infra</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">CI/CD</div>
+            <div class="hero-stat-label">Automated</div>
+          </div>
+        </div>
+      </div>
 
-<h2>IoT Biometrics Integration</h2>
-
-<div class="card">
-<div class="card-body">
-
-<p>Face scan device integration with PHP backend and MySQL database using scheduled VB6 automation.</p>
-
-<pre>
-Face Device
- ↓
-3rd Party Cloud
- ↓
-VB6 Upload
- ↓
-PHP Backend
- ↓
-MySQL
-</pre>
-
-</div>
-</div>
-
+      <div class="col-lg-6 fade-up fade-up-2">
+        <div class="arch-card">
+          <pre class="mb-0" style="color:inherit">
+<span class="amber">// Node.js Clean Architecture</span>
+<span class="teal">Request</span>
+   ↓
+<span class="amber">Middleware</span> <span class="muted">[ JWT · Validator · Redis ]</span>
+   ↓
+<span class="teal">Controller</span>
+   ↓
+<span class="amber">Service Layer</span> <span class="muted">[ Notification · Email ]</span>
+   ↓
+<span class="teal">Interface Layer</span>
+   ↓
+<span class="amber">DAO Layer</span>
+   ↓
+<span class="teal">Prisma ORM</span> → <span class="amber">Database</span>
+   ↓
+<span class="teal">Response</span> <span class="muted">[ JSON / File ]</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ─────────────── SKILLS ─────────────── -->
+<section id="skills" class="py-6" style="padding:5rem 0;">
+  <div class="container">
+    <p class="section-tag">01 — Technical Skills</p>
+    <h2 class="section-title">Tools &amp; <span class="accent">Technologies</span></h2>
+    <div class="section-divider"></div>
+
+    <div class="row g-4">
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="skill-category">
+          <div class="skill-cat-icon"><i class="bi bi-server"></i></div>
+          <div class="skill-cat-title">Backend Development</div>
+          <span class="skill-pill">PHP</span>
+          <span class="skill-pill">Laravel</span>
+          <span class="skill-pill">Node.js</span>
+          <span class="skill-pill">TypeScript</span>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="skill-category">
+          <div class="skill-cat-icon"><i class="bi bi-database"></i></div>
+          <div class="skill-cat-title">Databases</div>
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">Prisma ORM</span>
+          <span class="skill-pill">Eloquent ORM</span>
+          <span class="skill-pill">Redis</span>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="skill-category">
+          <div class="skill-cat-icon"><i class="bi bi-cpu"></i></div>
+          <div class="skill-cat-title">IoT Integration</div>
+          <span class="skill-pill">Face Recognition</span>
+          <span class="skill-pill">Biometric Devices</span>
+          <span class="skill-pill">RFID Devices</span>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="skill-category">
+          <div class="skill-cat-icon"><i class="bi bi-cloud"></i></div>
+          <div class="skill-cat-title">Infrastructure</div>
+          <span class="skill-pill">AWS EC2</span>
+          <span class="skill-pill">AWS RDS</span>
+          <span class="skill-pill">Route53</span>
+          <span class="skill-pill">SSL / HTTPS</span>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="skill-category">
+          <div class="skill-cat-icon"><i class="bi bi-github"></i></div>
+          <div class="skill-cat-title">DevOps</div>
+          <span class="skill-pill">GitHub Actions</span>
+          <span class="skill-pill">CI/CD Pipelines</span>
+          <span class="skill-pill">Linux Deployment</span>
+          <span class="skill-pill">Self-hosted Runner</span>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="skill-category">
+          <div class="skill-cat-icon"><i class="bi bi-shield-lock"></i></div>
+          <div class="skill-cat-title">Security</div>
+          <span class="skill-pill">JWT</span>
+          <span class="skill-pill">Sanctum</span>
+          <span class="skill-pill">Passport</span>
+          <span class="skill-pill">HTTPS / SSL</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── PROJECTS ─────────────── -->
+<section id="projects" style="padding:5rem 0; background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 50%, var(--bg) 100%);">
+  <div class="container">
+    <p class="section-tag">02 — Projects</p>
+    <h2 class="section-title">Featured <span class="accent">Work</span></h2>
+    <div class="section-divider"></div>
+
+    <div class="row g-4">
+
+      <!-- Project 1 -->
+      <div class="col-md-6 col-xl-4">
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-num">01</span>
+            <div>
+              <div class="project-title">IoT Biometrics Device Integration</div>
+              <div class="project-tech">
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">VB6</span>
+                <span class="tech-tag">Windows Server</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">Automated backend system synchronizing biometric attendance data from face recognition devices via VB6 executable and scheduled batch jobs.</p>
+            <ul class="project-features">
+              <li>Automated biometric data ingestion</li>
+              <li>Legacy VB6 application integration</li>
+              <li>Scheduled Windows automation</li>
+              <li>Reliable attendance synchronization</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="col-md-6 col-xl-4">
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-num">02</span>
+            <div>
+              <div class="project-title">RFID IoT Integration</div>
+              <div class="project-tech">
+                <span class="tech-tag">Laravel</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">REST API</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">Backend API receiving RFID scan data from IoT devices via HTTP POST requests, powering a real-time web dashboard.</p>
+            <ul class="project-features">
+              <li>IoT device API integration</li>
+              <li>RESTful endpoint design</li>
+              <li>Real-time scan data collection</li>
+              <li>Laravel backend services</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="col-md-6 col-xl-4">
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-num">03</span>
+            <div>
+              <div class="project-title">Node.js Clean Architecture Backend</div>
+              <div class="project-tech">
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Prisma</span>
+                <span class="tech-tag">Redis</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">Modular backend API using TypeScript and clean architecture with layered separation between controllers, services, and data access objects.</p>
+            <ul class="project-features">
+              <li>Clean architecture design</li>
+              <li>JWT authentication middleware</li>
+              <li>Redis caching layer</li>
+              <li>Prisma ORM abstraction</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="col-md-6 col-xl-4">
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-num">04</span>
+            <div>
+              <div class="project-title">Laravel MVC Architecture</div>
+              <div class="project-tech">
+                <span class="tech-tag">Laravel</span>
+                <span class="tech-tag">Blade</span>
+                <span class="tech-tag">Sanctum</span>
+                <span class="tech-tag">Passport</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">Full-featured Laravel web applications following strict MVC patterns with secure authentication via Sanctum and Passport.</p>
+            <ul class="project-features">
+              <li>MVC architecture pattern</li>
+              <li>Blade templating engine</li>
+              <li>Secure API authentication</li>
+              <li>ORM-based database management</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="col-md-6 col-xl-4">
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-num">05</span>
+            <div>
+              <div class="project-title">GitHub CI/CD Pipeline</div>
+              <div class="project-tech">
+                <span class="tech-tag">GitHub Actions</span>
+                <span class="tech-tag">Self-hosted Runner</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">Automated deployment pipelines using GitHub Actions with self-hosted runners, triggering on pull request merges to dev and prod branches.</p>
+            <ul class="project-features">
+              <li>Automated deployment on merge</li>
+              <li>Branch-based workflow</li>
+              <li>CI/CD pipeline config</li>
+              <li>Self-hosted deployment runners</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="col-md-6 col-xl-4">
+        <div class="project-card">
+          <div class="project-card-header">
+            <span class="project-num">06</span>
+            <div>
+              <div class="project-title">AWS Infrastructure Configuration</div>
+              <div class="project-tech">
+                <span class="tech-tag">EC2</span>
+                <span class="tech-tag">RDS</span>
+                <span class="tech-tag">Route53</span>
+                <span class="tech-tag">SSL</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">End-to-end AWS cloud infrastructure: VPC networking, EC2 compute, RDS managed databases, Route53 DNS, and HTTPS SSL configuration.</p>
+            <ul class="project-features">
+              <li>VPC networking setup</li>
+              <li>EC2 &amp; RDS configuration</li>
+              <li>Route53 DNS management</li>
+              <li>HTTPS SSL certificate setup</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Architecture Flows Row -->
+    <h4 class="mt-5 mb-4" style="font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:'Space Mono',monospace;">
+      // Architecture Flows
+    </h4>
+    <div class="row g-4">
+
+      <div class="col-md-6 col-xl-3">
+        <div class="flow-card">
+          <div class="flow-title">Biometrics Flow</div>
+          <div class="flow-step"><span class="flow-dot"></span>Face Scan Device</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>3rd Party Cloud</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>VB6 Executable</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>Scheduled BAT Job</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>PHP Web App</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>MySQL Database</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <div class="flow-card">
+          <div class="flow-title">RFID Flow</div>
+          <div class="flow-step"><span class="flow-dot"></span>RFID Device</div>
+          <div class="flow-arrow">↓ POST Request</div>
+          <div class="flow-step"><span class="flow-dot"></span>Laravel API Endpoint</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>MySQL Database</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>Laravel Dashboard</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <div class="flow-card">
+          <div class="flow-title">Node.js Flow</div>
+          <div class="flow-step"><span class="flow-dot"></span>Request</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>JWT / Validator / Redis</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>Controller</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>Service Layer</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>DAO → Prisma ORM</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>Response (JSON)</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <div class="flow-card">
+          <div class="flow-title">AWS Flow</div>
+          <div class="flow-step"><span class="flow-dot"></span>Route53 DNS</div>
+          <div class="flow-arrow">↓ A Record / CNAME</div>
+          <div class="flow-step"><span class="flow-dot"></span>SSL Certificate</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>EC2 (Amazon Linux)</div>
+          <div class="flow-arrow">↓ Nginx / Apache</div>
+          <div class="flow-step"><span class="flow-dot"></span>Application Server</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step"><span class="flow-dot"></span>RDS Database</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── ENGINEERING PRACTICES ─────────────── -->
+<section id="practices" style="padding:5rem 0;">
+  <div class="container">
+    <p class="section-tag">03 — Engineering Practices</p>
+    <h2 class="section-title">How I <span class="accent">Build</span></h2>
+    <div class="section-divider"></div>
+
+    <div class="row g-4 mb-5">
+
+      <div class="col-sm-6 col-xl-3">
+        <div class="practice-card">
+          <div class="practice-icon"><i class="bi bi-layers"></i></div>
+          <div class="practice-title">Architecture</div>
+          <ul class="practice-list">
+            <li>Clean architecture design</li>
+            <li>MVC framework patterns</li>
+            <li>API-first development</li>
+            <li>Layered separation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-xl-3">
+        <div class="practice-card">
+          <div class="practice-icon"><i class="bi bi-shield-check"></i></div>
+          <div class="practice-title">Security</div>
+          <ul class="practice-list">
+            <li>JWT authentication</li>
+            <li>Laravel Sanctum</li>
+            <li>Laravel Passport</li>
+            <li>HTTPS &amp; SSL</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-xl-3">
+        <div class="practice-card">
+          <div class="practice-icon"><i class="bi bi-lightning-charge"></i></div>
+          <div class="practice-title">Performance</div>
+          <ul class="practice-list">
+            <li>Redis caching</li>
+            <li>Database optimization</li>
+            <li>Efficient API middleware</li>
+            <li>ORM query tuning</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-xl-3">
+        <div class="practice-card">
+          <div class="practice-icon"><i class="bi bi-gear-wide-connected"></i></div>
+          <div class="practice-title">DevOps</div>
+          <ul class="practice-list">
+            <li>GitHub CI/CD automation</li>
+            <li>Deployment pipelines</li>
+            <li>Linux server admin</li>
+            <li>Self-hosted runners</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Repo Structure -->
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-5">
+        <h5 style="font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;">
+          // Repository Structure
+        </h5>
+        <div class="repo-tree">
+<span class="dir">backend-project/</span>
+│
+├── <span class="dir">src/</span>
+│   ├── <span class="dir">controllers/</span>
+│   ├── <span class="dir">services/</span>
+│   ├── <span class="dir">interfaces/</span>
+│   ├── <span class="dir">dao/</span>
+│   ├── <span class="dir">middleware/</span>
+│   ├── <span class="dir">routes/</span>
+│   ├── <span class="dir">utils/</span>
+│   └── <span class="dir">config/</span>
+│
+├── <span class="dir">prisma/</span>
+│   └── <span class="file">schema.prisma</span>
+│
+├── <span class="dir">tests/</span>
+├── <span class="dir">docker/</span>
+├── <span class="dir">deployment/</span>
+│   └── <span class="file">deployment.yml</span>
+│
+├── <span class="dir">docs/</span>
+│   └── <span class="file">architecture.md</span>
+│
+└── <span class="file">README.md</span>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <h5 style="font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;">
+          // System Overview
+        </h5>
+        <div class="arch-card">
+          <pre class="mb-0" style="color:inherit">
+<span class="amber">         IoT Devices</span>
+  ┌────────────┴────────────┐
+  │                         │
+<span class="teal">Face Scan Device</span>       <span class="teal">RFID Device</span>
+  │                         │
+  ▼                         ▼
+<span class="amber">3rd Party Cloud</span>      <span class="amber">Laravel API Endpoint</span>
+  │                         │
+  ▼                         ▼
+<span class="teal">VB6 Upload Client</span>    <span class="teal">Laravel Backend</span>
+<span class="muted">(Scheduled BAT Job)</span>        │
+  │                         ▼
+  ▼                   <span class="amber">MySQL Database</span>
+<span class="teal">PHP Web → MySQL</span>
+
+<span class="muted">─────────────────────────────</span>
+
+           <span class="amber">API Layer</span>
+               │
+         <span class="teal">Node.js + TS</span>
+    ┌──────────┴──────────┐
+<span class="amber">Middleware</span>          <span class="amber">Services</span>
+<span class="muted">JWT/Redis/Validator  Notify/Email</span>
+               │
+          <span class="teal">Prisma ORM</span>
+               │
+           <span class="amber">Database</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── FUTURE ─────────────── -->
+<section id="future" style="padding:5rem 0; background:var(--surface);">
+  <div class="container">
+    <p class="section-tag">04 — Roadmap</p>
+    <h2 class="section-title">Future <span class="accent">Improvements</span></h2>
+    <div class="section-divider"></div>
+
+    <div class="row g-3">
+
+      <div class="col-md-6">
+        <div class="future-item">
+          <i class="bi bi-arrow-repeat future-icon"></i>
+          <div>
+            <div class="future-title">Event-Driven Architecture</div>
+            <div class="future-sub">Decouple services with async event processing for higher scalability</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="future-item">
+          <i class="bi bi-diagram-3 future-icon"></i>
+          <div>
+            <div class="future-title">Microservices Design</div>
+            <div class="future-sub">Break monoliths into independently deployable service units</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="future-item">
+          <i class="bi bi-boxes future-icon"></i>
+          <div>
+            <div class="future-title">Kubernetes Orchestration</div>
+            <div class="future-sub">Container management and auto-scaling for production workloads</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="future-item">
+          <i class="bi bi-envelope-paper future-icon"></i>
+          <div>
+            <div class="future-title">Message Queues</div>
+            <div class="future-sub">Kafka &amp; RabbitMQ for reliable async communication</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="future-item">
+          <i class="bi bi-hdd-network future-icon"></i>
+          <div>
+            <div class="future-title">Distributed Caching</div>
+            <div class="future-sub">Redis clusters and CDN strategies for global performance</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="future-item">
+          <i class="bi bi-shield-shaded future-icon"></i>
+          <div>
+            <div class="future-title">Zero-Trust Security</div>
+            <div class="future-sub">Service mesh with mutual TLS and fine-grained access control</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── FOOTER ─────────────── -->
+<footer>
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <div class="mono">
+        <span class="amber">&lt;</span>backend.dev<span class="amber">/&gt;</span>
+        &nbsp;— Backend Engineering Portfolio
+      </div>
+      <div class="mono" style="font-size:.72rem;">
+        PHP · Laravel · Node.js · TypeScript · AWS · MySQL
+      </div>
+      <div class="d-flex gap-3">
+        <a href="https://github.com" target="_blank" style="color:var(--muted);font-size:1.2rem;transition:color .2s;"
+          onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--muted)'">
+          <i class="bi bi-github"></i>
+        </a>
+        <a href="https://linkedin.com" target="_blank" style="color:var(--muted);font-size:1.2rem;transition:color .2s;"
+          onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--muted)'">
+          <i class="bi bi-linkedin"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Scroll-triggered fade-ins for sections
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(
+    '.skill-category, .project-card, .practice-card, .flow-card, .future-item'
+  ).forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease, border-color .3s, box-shadow .3s';
+    observer.observe(el);
+  });
+
+  // Active nav link highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === '#' + current
+        ? 'var(--amber)' : '';
+    });
+  });
+</script>
 </body>
 </html>

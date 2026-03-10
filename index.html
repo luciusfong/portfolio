@@ -1,1 +1,404 @@
-HELLO WORLD
+Backend Engineering Portfolio
+
+Designing scalable backend systems, IoT integrations, and cloud infrastructure using modern backend frameworks and clean architecture principles.
+
+Technical Skills
+Backend Development
+
+PHP
+
+Laravel
+
+Node.js
+
+TypeScript
+
+Databases
+
+MySQL
+
+Prisma ORM
+
+Eloquent ORM
+
+IoT Integration
+
+Face recognition biometric devices
+
+RFID devices
+
+Infrastructure
+
+AWS EC2
+
+AWS RDS
+
+Route53
+
+SSL configuration
+
+DevOps
+
+GitHub Actions
+
+CI/CD pipelines
+
+Linux server deployment
+
+System Architecture Overview
+                    IoT Devices
+          ┌────────────┴────────────┐
+          │                         │
+   Face Scan Device            RFID Device
+          │                         │
+          ▼                         ▼
+  3rd Party Cloud Web         Laravel API Endpoint
+          │                         │
+          ▼                         ▼
+      VB6 Upload Client        Laravel Backend
+     (Scheduled BAT Job)            │
+          │                         │
+          ▼                         ▼
+        PHP Web                MySQL Database
+          │
+          ▼
+     MySQL Database
+
+
+                   API Layer
+                       │
+                       ▼
+            Node.js TypeScript Backend
+                       │
+       ┌───────────────┴────────────────┐
+       │                                │
+ Middleware Layer                Service Layer
+ JWT Auth / Validator            Notification
+ Redis Cache                     Email
+ Error Handling
+                       │
+                       ▼
+                   Prisma ORM
+                       │
+                       ▼
+                    Database
+Project 1 — IoT Biometrics Device Integration
+Technologies
+
+PHP
+
+MySQL
+
+VB6
+
+Windows Server
+
+Batch Automation
+
+Architecture
+Face Scan Device
+      ↓
+3rd Party Cloud Web
+      ↓
+VB6 Executable
+      ↓
+Scheduled BAT Job
+      ↓
+PHP Web Application
+      ↓
+MySQL Database
+Description
+
+Developed an automated backend system that synchronizes biometric attendance data from face recognition devices.
+
+The system retrieves attendance records from a third-party cloud service through a VB6 executable scheduled by a Windows batch job, which uploads data to a PHP web application connected to a MySQL database.
+
+Key Features
+
+Automated biometric data ingestion
+
+Integration of legacy VB6 applications
+
+Scheduled Windows automation
+
+Reliable attendance data synchronization
+
+Project 2 — RFID IoT Integration
+Technologies
+
+Laravel
+
+MySQL
+
+REST API
+
+Architecture
+RFID Device
+     ↓ (POST Request)
+Laravel API Endpoint
+     ↓
+MySQL Database
+     ↓
+Laravel Web Dashboard
+Description
+
+Developed a backend API that receives RFID scan data from IoT devices through HTTP POST requests.
+
+The Laravel backend processes the request and stores attendance data into MySQL, which powers the web dashboard.
+
+Key Features
+
+IoT device API integration
+
+RESTful endpoint design
+
+Real-time scan data collection
+
+Laravel backend services
+
+Project 3 — Node.js Clean Architecture Backend
+Technologies
+
+Node.js
+
+TypeScript
+
+Prisma ORM
+
+Redis
+
+JWT Authentication
+
+Architecture
+Request
+   ↓
+Middleware
+(JWT Auth / Validator / Redis Cache)
+   ↓
+Controller
+   ↓
+Service Layer
+   ↓
+Interface Layer
+   ↓
+DAO Layer
+   ↓
+Prisma ORM
+   ↓
+Database
+   ↓
+Response (JSON / File)
+Additional Middleware
+Notification Service
+Email Service
+Error Handling
+Description
+
+Designed a modular backend API using Node.js and TypeScript, following clean architecture principles with layered separation between controllers, services, and data access.
+
+Key Features
+
+Clean architecture design
+
+JWT authentication
+
+Redis caching
+
+Prisma ORM database abstraction
+
+Modular middleware system
+
+Project 4 — Laravel MVC Architecture
+Technologies
+
+Laravel
+
+Blade
+
+Eloquent ORM
+
+Sanctum
+
+Passport
+
+Architecture
+Request
+   ↓
+Authentication
+(Sanctum / Passport)
+   ↓
+Controller
+   ↓
+Eloquent ORM Model
+   ↓
+Database
+   ↓
+Blade View
+   ↓
+Response
+Description
+
+Developed Laravel web applications following the MVC architecture pattern.
+
+Authentication and API sessions are handled using Sanctum and Passport, while Eloquent ORM manages database interaction.
+
+Key Features
+
+MVC architecture
+
+Blade templating
+
+Secure authentication
+
+ORM-based database management
+
+Project 5 — GitHub CI/CD Pipeline
+Technologies
+
+GitHub Actions
+
+Self-hosted runner
+
+Workflow
+Feature / Fix Branch
+        ↓
+Pull Request
+        ↓
+Merge to Dev / Prod
+        ↓
+GitHub Actions Workflow
+(deployment.yml)
+        ↓
+Self-hosted Runner
+        ↓
+Server Deployment
+Description
+
+Implemented automated deployment pipelines using GitHub Actions with a self-hosted runner to deploy backend applications directly to servers after pull request merges.
+
+Key Features
+
+Automated deployment
+
+Branch-based workflow
+
+CI/CD pipeline configuration
+
+Self-hosted deployment runners
+
+Project 6 — AWS Infrastructure Configuration
+Technologies
+
+AWS EC2
+
+AWS RDS
+
+Route53
+
+SSL
+
+Amazon Linux
+
+Architecture
+Route53 DNS
+     ↓
+Domain (A Record / CNAME)
+     ↓
+SSL Certificate
+     ↓
+EC2 Server (Amazon Linux)
+     ↓
+Virtual Host (Nginx / Apache)
+     ↓
+Application Server
+     ↓
+RDS Database
+Description
+
+Configured cloud infrastructure to host backend applications using AWS services.
+
+Infrastructure Components
+
+VPC networking
+
+EC2 compute instances
+
+RDS managed databases
+
+Route53 DNS management
+
+HTTPS SSL configuration
+
+Server health monitoring
+
+Engineering Practices
+Architecture
+
+Clean architecture backend design
+
+MVC framework design
+
+API-first development
+
+Security
+
+JWT authentication
+
+Laravel Sanctum / Passport
+
+HTTPS SSL
+
+Performance
+
+Redis caching
+
+Database optimization
+
+Efficient API middleware
+
+DevOps
+
+GitHub CI/CD automation
+
+Server deployment pipelines
+
+Linux server administration
+
+Example Backend Repository Structure
+backend-project
+│
+├── src
+│   ├── controllers
+│   ├── services
+│   ├── interfaces
+│   ├── dao
+│   ├── middleware
+│   ├── routes
+│   ├── utils
+│   └── config
+│
+├── prisma
+│   └── schema.prisma
+│
+├── tests
+│
+├── docker
+│
+├── deployment
+│   └── deployment.yml
+│
+├── docs
+│   └── architecture.md
+│
+└── README.md
+Future Improvements
+
+Event-driven architecture
+
+Microservices design
+
+Kubernetes container orchestration
+
+Message queues (Kafka / RabbitMQ)
+
+Distributed caching

@@ -22,7 +22,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -32,6 +31,7 @@
       font-size: 1rem;
       line-height: 1.7;
       overflow-x: hidden;
+      text-align: center;
     }
 
     /* ── NOISE TEXTURE OVERLAY ── */
@@ -111,7 +111,7 @@
       font-size: 1.1rem;
       color: var(--muted);
       max-width: 520px;
-      margin-bottom: 2.2rem;
+      margin: 0 auto 2.2rem auto;
     }
     .btn-amber {
       background: var(--amber);
@@ -125,6 +125,8 @@
       padding: .7rem 1.6rem;
       border-radius: 3px;
       transition: background .25s, transform .2s;
+      text-decoration: none;
+      display: inline-block;
     }
     .btn-amber:hover { background: var(--amber-dim); color: #000; transform: translateY(-2px); }
     .btn-outline-teal {
@@ -138,11 +140,14 @@
       padding: .7rem 1.6rem;
       border-radius: 3px;
       transition: background .25s, color .25s;
+      text-decoration: none;
+      display: inline-block;
     }
     .btn-outline-teal:hover { background: var(--teal); color: #000; }
 
     .hero-stats {
       display: flex;
+      justify-content: center;
       gap: 2.5rem;
       margin-top: 3rem;
       flex-wrap: wrap;
@@ -205,7 +210,7 @@
     .section-divider {
       width: 48px; height: 3px;
       background: var(--amber);
-      margin-bottom: 3rem;
+      margin: 0 auto 3rem auto;
       border-radius: 2px;
     }
 
@@ -217,11 +222,9 @@
       padding: 1.5rem;
       height: 100%;
       transition: border-color .3s, transform .3s;
+      text-align: center;
     }
-    .skill-category:hover {
-      border-color: var(--amber);
-      transform: translateY(-4px);
-    }
+    .skill-category:hover { border-color: var(--amber); transform: translateY(-4px); }
     .skill-cat-icon {
       width: 40px; height: 40px;
       border-radius: 8px;
@@ -229,7 +232,7 @@
       display: flex; align-items: center; justify-content: center;
       color: var(--amber);
       font-size: 1.1rem;
-      margin-bottom: 1rem;
+      margin: 0 auto 1rem auto;
     }
     .skill-cat-title {
       font-size: .75rem;
@@ -262,6 +265,7 @@
       height: 100%;
       transition: border-color .3s, transform .3s, box-shadow .3s;
       display: flex; flex-direction: column;
+      text-align: center;
     }
     .project-card:hover {
       border-color: var(--amber);
@@ -271,15 +275,16 @@
     .project-card-header {
       padding: 1.4rem 1.5rem 1rem;
       border-bottom: 1px solid var(--border);
-      display: flex; align-items: flex-start; gap: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
     }
     .project-num {
       font-family: 'Space Mono', monospace;
       font-size: .7rem;
       color: var(--amber);
       letter-spacing: .1em;
-      white-space: nowrap;
-      padding-top: .1rem;
     }
     .project-title {
       font-size: 1rem;
@@ -290,7 +295,7 @@
     .project-body { padding: 1.2rem 1.5rem; flex: 1; }
     .project-desc { font-size: .88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
     .project-tech {
-      display: flex; flex-wrap: wrap; gap: .3rem;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: .3rem;
       margin-bottom: 1rem;
     }
     .tech-tag {
@@ -308,14 +313,13 @@
       font-size: .82rem;
       color: var(--muted);
       padding: .2rem 0;
-      display: flex; align-items: flex-start; gap: .5rem;
+      display: flex; align-items: flex-start; justify-content: center; gap: .5rem;
     }
     .project-features li::before {
       content: '→';
       color: var(--amber);
       font-family: 'Space Mono', monospace;
       flex-shrink: 0;
-      margin-top: .02rem;
     }
 
     /* ── ARCH FLOW ── */
@@ -325,6 +329,7 @@
       border-radius: 8px;
       padding: 1.4rem;
       height: 100%;
+      text-align: center;
     }
     .flow-title {
       font-family: 'Space Mono', monospace;
@@ -337,18 +342,18 @@
       border-bottom: 1px solid var(--border);
     }
     .flow-step {
-      display: flex; align-items: center; gap: .6rem;
+      display: flex; align-items: center; justify-content: center; gap: .6rem;
       font-family: 'Space Mono', monospace;
       font-size: .75rem;
       color: var(--text);
       padding: .22rem 0;
     }
     .flow-arrow {
-      display: flex; align-items: center; gap: .6rem;
       font-family: 'Space Mono', monospace;
       font-size: .75rem;
       color: var(--muted);
-      padding: .04rem 0 .04rem 1.2rem;
+      padding: .04rem 0;
+      text-align: center;
     }
     .flow-dot {
       width: 6px; height: 6px;
@@ -365,29 +370,19 @@
       padding: 1.4rem 1.5rem;
       height: 100%;
       transition: border-color .3s;
+      text-align: center;
     }
     .practice-card:hover { border-color: var(--teal); }
-    .practice-icon {
-      font-size: 1.4rem;
-      color: var(--teal);
-      margin-bottom: .8rem;
-    }
-    .practice-title {
-      font-size: .9rem;
-      font-weight: 700;
-      margin-bottom: .6rem;
-    }
+    .practice-icon { font-size: 1.4rem; color: var(--teal); margin-bottom: .8rem; }
+    .practice-title { font-size: .9rem; font-weight: 700; margin-bottom: .6rem; }
     .practice-list { list-style: none; padding: 0; margin: 0; }
     .practice-list li {
       font-size: .82rem;
       color: var(--muted);
       padding: .15rem 0;
-      display: flex; gap: .5rem;
+      display: flex; justify-content: center; gap: .5rem;
     }
-    .practice-list li::before {
-      content: '–';
-      color: var(--teal);
-    }
+    .practice-list li::before { content: '–'; color: var(--teal); }
 
     /* ── FUTURE ── */
     .future-item {
@@ -398,6 +393,7 @@
       padding: 1rem 1.2rem;
       display: flex; align-items: center; gap: 1rem;
       transition: background .25s;
+      text-align: left;
     }
     .future-item:hover { background: rgba(245,166,35,.06); }
     .future-icon { color: var(--amber); font-size: 1.1rem; flex-shrink: 0; }
@@ -410,11 +406,7 @@
       border-top: 1px solid var(--border);
       padding: 2.5rem 0;
     }
-    footer .mono {
-      font-family: 'Space Mono', monospace;
-      font-size: .8rem;
-      color: var(--muted);
-    }
+    footer .mono { font-family: 'Space Mono', monospace; font-size: .8rem; color: var(--muted); }
     footer .mono .amber { color: var(--amber); }
 
     /* ── ANIMATIONS ── */
@@ -428,17 +420,6 @@
     .fade-up-3 { animation-delay: .34s; }
     .fade-up-4 { animation-delay: .46s; }
 
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    .cursor {
-      display: inline-block;
-      width: 3px; height: 1em;
-      background: var(--amber);
-      animation: blink 1s step-end infinite;
-      vertical-align: middle;
-      margin-left: 2px;
-    }
-
-    /* ── RESPONSIVE ── */
     @media (max-width:768px) {
       .hero { min-height: auto; padding: 7rem 0 4rem; }
     }
@@ -468,148 +449,109 @@
 </nav>
 
 <!-- ─────────────── HERO ─────────────── -->
-<section class="hero" id="home">
+<section class="hero text-center" id="home">
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
   <div class="container position-relative">
-    <div class="row align-items-center gy-5">
-      <div class="col-lg-6">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
         <p class="hero-label fade-up">// Backend Engineer</p>
         <h1 class="fade-up fade-up-1">
-          Scalable<br/>Systems &amp;<br/><span class="accent">Clean Arch.</span>
+          Scalable Systems &amp;<br/><span class="accent">Clean Architecture</span>
         </h1>
         <p class="lead fade-up fade-up-2">
           Designing IoT integrations, cloud infrastructure, and API-first backends
           using modern frameworks and layered architecture principles.
         </p>
-        <div class="d-flex flex-wrap gap-3 fade-up fade-up-3">
+        <div class="d-flex flex-wrap gap-3 fade-up fade-up-3 justify-content-center">
           <a href="#projects" class="btn-amber">View Projects</a>
           <a href="#skills" class="btn-outline-teal">Technical Skills</a>
         </div>
         <div class="hero-stats fade-up fade-up-4">
-          <div>
-            <div class="hero-stat-num">6+</div>
-            <div class="hero-stat-label">Projects</div>
-          </div>
-          <div>
-            <div class="hero-stat-num">5+</div>
-            <div class="hero-stat-label">Tech Stacks</div>
-          </div>
-          <div>
-            <div class="hero-stat-num">AWS</div>
-            <div class="hero-stat-label">Cloud Infra</div>
-          </div>
-          <div>
-            <div class="hero-stat-num">CI/CD</div>
-            <div class="hero-stat-label">Automated</div>
-          </div>
+          <div><div class="hero-stat-num">6+</div><div class="hero-stat-label">Projects</div></div>
+          <div><div class="hero-stat-num">5+</div><div class="hero-stat-label">Tech Stacks</div></div>
+          <div><div class="hero-stat-num">AWS</div><div class="hero-stat-label">Cloud Infra</div></div>
+          <div><div class="hero-stat-num">CI/CD</div><div class="hero-stat-label">Automated</div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- ─────────────── SKILLS ─────────────── -->
-<section id="skills" class="py-6" style="padding:5rem 0;">
-  <div class="container">
+<section id="skills" style="padding:5rem 0;">
+  <div class="container text-center">
     <p class="section-tag">01 — Technical Skills</p>
     <h2 class="section-title">Tools &amp; <span class="accent">Technologies</span></h2>
     <div class="section-divider"></div>
-
     <div class="row g-4">
-
       <div class="col-sm-6 col-lg-4">
         <div class="skill-category">
           <div class="skill-cat-icon"><i class="bi bi-server"></i></div>
           <div class="skill-cat-title">Backend Development</div>
-          <span class="skill-pill">PHP</span>
-          <span class="skill-pill">Laravel</span>
-          <span class="skill-pill">Node.js</span>
-          <span class="skill-pill">TypeScript</span>
+          <span class="skill-pill">PHP</span><span class="skill-pill">Laravel</span>
+          <span class="skill-pill">Node.js</span><span class="skill-pill">TypeScript</span>
         </div>
       </div>
-
       <div class="col-sm-6 col-lg-4">
         <div class="skill-category">
           <div class="skill-cat-icon"><i class="bi bi-database"></i></div>
           <div class="skill-cat-title">Databases</div>
-          <span class="skill-pill">MySQL</span>
-          <span class="skill-pill">Prisma ORM</span>
-          <span class="skill-pill">Eloquent ORM</span>
-          <span class="skill-pill">Redis</span>
+          <span class="skill-pill">MySQL</span><span class="skill-pill">Prisma ORM</span>
+          <span class="skill-pill">Eloquent ORM</span><span class="skill-pill">Redis</span>
         </div>
       </div>
-
       <div class="col-sm-6 col-lg-4">
         <div class="skill-category">
           <div class="skill-cat-icon"><i class="bi bi-cpu"></i></div>
           <div class="skill-cat-title">IoT Integration</div>
           <span class="skill-pill">Face Recognition</span>
-          <span class="skill-pill">Biometric Devices</span>
-          <span class="skill-pill">RFID Devices</span>
+          <span class="skill-pill">Biometric Devices</span><span class="skill-pill">RFID Devices</span>
         </div>
       </div>
-
       <div class="col-sm-6 col-lg-4">
         <div class="skill-category">
           <div class="skill-cat-icon"><i class="bi bi-cloud"></i></div>
           <div class="skill-cat-title">Infrastructure</div>
-          <span class="skill-pill">AWS EC2</span>
-          <span class="skill-pill">AWS RDS</span>
-          <span class="skill-pill">Route53</span>
-          <span class="skill-pill">SSL / HTTPS</span>
+          <span class="skill-pill">AWS EC2</span><span class="skill-pill">AWS RDS</span>
+          <span class="skill-pill">Route53</span><span class="skill-pill">SSL / HTTPS</span>
         </div>
       </div>
-
       <div class="col-sm-6 col-lg-4">
         <div class="skill-category">
           <div class="skill-cat-icon"><i class="bi bi-github"></i></div>
           <div class="skill-cat-title">DevOps</div>
-          <span class="skill-pill">GitHub Actions</span>
-          <span class="skill-pill">CI/CD Pipelines</span>
-          <span class="skill-pill">Linux Deployment</span>
-          <span class="skill-pill">Self-hosted Runner</span>
+          <span class="skill-pill">GitHub Actions</span><span class="skill-pill">CI/CD Pipelines</span>
+          <span class="skill-pill">Linux Deployment</span><span class="skill-pill">Self-hosted Runner</span>
         </div>
       </div>
-
       <div class="col-sm-6 col-lg-4">
         <div class="skill-category">
           <div class="skill-cat-icon"><i class="bi bi-shield-lock"></i></div>
           <div class="skill-cat-title">Security</div>
-          <span class="skill-pill">JWT</span>
-          <span class="skill-pill">Sanctum</span>
-          <span class="skill-pill">Passport</span>
-          <span class="skill-pill">HTTPS / SSL</span>
+          <span class="skill-pill">JWT</span><span class="skill-pill">Sanctum</span>
+          <span class="skill-pill">Passport</span><span class="skill-pill">HTTPS / SSL</span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- ─────────────── PROJECTS ─────────────── -->
 <section id="projects" style="padding:5rem 0; background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 50%, var(--bg) 100%);">
-  <div class="container">
+  <div class="container text-center">
     <p class="section-tag">02 — Projects</p>
     <h2 class="section-title">Featured <span class="accent">Work</span></h2>
     <div class="section-divider"></div>
-
     <div class="row g-4">
-
-      <!-- Project 1 -->
       <div class="col-md-6 col-xl-4">
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-num">01</span>
-            <div>
-              <div class="project-title">IoT Biometrics Device Integration</div>
-              <div class="project-tech">
-                <span class="tech-tag">PHP</span>
-                <span class="tech-tag">MySQL</span>
-                <span class="tech-tag">VB6</span>
-                <span class="tech-tag">Windows Server</span>
-              </div>
+            <div class="project-title">IoT Biometrics Device Integration</div>
+            <div class="project-tech">
+              <span class="tech-tag">PHP</span><span class="tech-tag">MySQL</span>
+              <span class="tech-tag">VB6</span><span class="tech-tag">Windows Server</span>
             </div>
           </div>
           <div class="project-body">
@@ -623,19 +565,14 @@
           </div>
         </div>
       </div>
-
-      <!-- Project 2 -->
       <div class="col-md-6 col-xl-4">
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-num">02</span>
-            <div>
-              <div class="project-title">RFID IoT Integration</div>
-              <div class="project-tech">
-                <span class="tech-tag">Laravel</span>
-                <span class="tech-tag">MySQL</span>
-                <span class="tech-tag">REST API</span>
-              </div>
+            <div class="project-title">RFID IoT Integration</div>
+            <div class="project-tech">
+              <span class="tech-tag">Laravel</span><span class="tech-tag">MySQL</span>
+              <span class="tech-tag">REST API</span>
             </div>
           </div>
           <div class="project-body">
@@ -649,20 +586,14 @@
           </div>
         </div>
       </div>
-
-      <!-- Project 3 -->
       <div class="col-md-6 col-xl-4">
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-num">03</span>
-            <div>
-              <div class="project-title">Node.js Clean Architecture Backend</div>
-              <div class="project-tech">
-                <span class="tech-tag">Node.js</span>
-                <span class="tech-tag">TypeScript</span>
-                <span class="tech-tag">Prisma</span>
-                <span class="tech-tag">Redis</span>
-              </div>
+            <div class="project-title">Node.js Clean Architecture Backend</div>
+            <div class="project-tech">
+              <span class="tech-tag">Node.js</span><span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Prisma</span><span class="tech-tag">Redis</span>
             </div>
           </div>
           <div class="project-body">
@@ -676,20 +607,14 @@
           </div>
         </div>
       </div>
-
-      <!-- Project 4 -->
       <div class="col-md-6 col-xl-4">
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-num">04</span>
-            <div>
-              <div class="project-title">Laravel MVC Architecture</div>
-              <div class="project-tech">
-                <span class="tech-tag">Laravel</span>
-                <span class="tech-tag">Blade</span>
-                <span class="tech-tag">Sanctum</span>
-                <span class="tech-tag">Passport</span>
-              </div>
+            <div class="project-title">Laravel MVC Architecture</div>
+            <div class="project-tech">
+              <span class="tech-tag">Laravel</span><span class="tech-tag">Blade</span>
+              <span class="tech-tag">Sanctum</span><span class="tech-tag">Passport</span>
             </div>
           </div>
           <div class="project-body">
@@ -703,18 +628,13 @@
           </div>
         </div>
       </div>
-
-      <!-- Project 5 -->
       <div class="col-md-6 col-xl-4">
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-num">05</span>
-            <div>
-              <div class="project-title">GitHub CI/CD Pipeline</div>
-              <div class="project-tech">
-                <span class="tech-tag">GitHub Actions</span>
-                <span class="tech-tag">Self-hosted Runner</span>
-              </div>
+            <div class="project-title">GitHub CI/CD Pipeline</div>
+            <div class="project-tech">
+              <span class="tech-tag">GitHub Actions</span><span class="tech-tag">Self-hosted Runner</span>
             </div>
           </div>
           <div class="project-body">
@@ -728,20 +648,14 @@
           </div>
         </div>
       </div>
-
-      <!-- Project 6 -->
       <div class="col-md-6 col-xl-4">
         <div class="project-card">
           <div class="project-card-header">
             <span class="project-num">06</span>
-            <div>
-              <div class="project-title">AWS Infrastructure Configuration</div>
-              <div class="project-tech">
-                <span class="tech-tag">EC2</span>
-                <span class="tech-tag">RDS</span>
-                <span class="tech-tag">Route53</span>
-                <span class="tech-tag">SSL</span>
-              </div>
+            <div class="project-title">AWS Infrastructure Configuration</div>
+            <div class="project-tech">
+              <span class="tech-tag">EC2</span><span class="tech-tag">RDS</span>
+              <span class="tech-tag">Route53</span><span class="tech-tag">SSL</span>
             </div>
           </div>
           <div class="project-body">
@@ -755,15 +669,13 @@
           </div>
         </div>
       </div>
-
     </div>
 
-    <!-- Architecture Flows Row -->
+    <!-- Architecture Flows -->
     <h4 class="mt-5 mb-4" style="font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:'Space Mono',monospace;">
       // Architecture Flows
     </h4>
     <div class="row g-4">
-
       <div class="col-md-6 col-xl-3">
         <div class="flow-card">
           <div class="flow-title">Biometrics Flow</div>
@@ -780,7 +692,6 @@
           <div class="flow-step"><span class="flow-dot"></span>MySQL Database</div>
         </div>
       </div>
-
       <div class="col-md-6 col-xl-3">
         <div class="flow-card">
           <div class="flow-title">RFID Flow</div>
@@ -793,7 +704,6 @@
           <div class="flow-step"><span class="flow-dot"></span>Laravel Dashboard</div>
         </div>
       </div>
-
       <div class="col-md-6 col-xl-3">
         <div class="flow-card">
           <div class="flow-title">Node.js Flow</div>
@@ -810,7 +720,6 @@
           <div class="flow-step"><span class="flow-dot"></span>Response (JSON)</div>
         </div>
       </div>
-
       <div class="col-md-6 col-xl-3">
         <div class="flow-card">
           <div class="flow-title">AWS Flow</div>
@@ -825,20 +734,18 @@
           <div class="flow-step"><span class="flow-dot"></span>RDS Database</div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- ─────────────── ENGINEERING PRACTICES ─────────────── -->
 <section id="practices" style="padding:5rem 0;">
-  <div class="container">
+  <div class="container text-center">
     <p class="section-tag">03 — Engineering Practices</p>
     <h2 class="section-title">How I <span class="accent">Build</span></h2>
     <div class="section-divider"></div>
 
     <div class="row g-4 mb-5">
-
       <div class="col-sm-6 col-xl-3">
         <div class="practice-card">
           <div class="practice-icon"><i class="bi bi-layers"></i></div>
@@ -851,7 +758,6 @@
           </ul>
         </div>
       </div>
-
       <div class="col-sm-6 col-xl-3">
         <div class="practice-card">
           <div class="practice-icon"><i class="bi bi-shield-check"></i></div>
@@ -864,7 +770,6 @@
           </ul>
         </div>
       </div>
-
       <div class="col-sm-6 col-xl-3">
         <div class="practice-card">
           <div class="practice-icon"><i class="bi bi-lightning-charge"></i></div>
@@ -877,7 +782,6 @@
           </ul>
         </div>
       </div>
-
       <div class="col-sm-6 col-xl-3">
         <div class="practice-card">
           <div class="practice-icon"><i class="bi bi-gear-wide-connected"></i></div>
@@ -890,147 +794,149 @@
           </ul>
         </div>
       </div>
-
     </div>
 
-        
-      
-    <!-- Repo Structure -->
+    <!-- Diagrams Row -->
     <div class="row g-4 align-items-start">
+
+      <!-- Repo Structure -->
       <div class="col-lg-4">
         <h5 style="font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;">
           // Repository Structure
         </h5>
-        <div class="arch-card">
-          <pre class="mb-0" style="color:inherit">
-            <span class="teal">backend-project/</span>
-            <span class="teal">│</span>
-            <span class="teal">├── src/</span>
-            <span class="teal">│   └── const/</span>
-            <span class="teal">│   │   └── entity/</span>
-            <span class="teal">│   │   └── logic/</span>
-            <span class="teal">│   │   └── responseMessage/</span>
-            <span class="teal">│   │   └── selector/</span>
-            <span class="teal">│   │</span>
-            <span class="teal">│   └── controllers/</span>
-            <span class="teal">│   │   └── modules/</span>
-            <span class="amber">│   │       └── dao</span>
-            <span class="amber">│   │       └── interface</span>
-            <span class="amber">│   │       └── businessLogic</span>
-            <span class="teal">│   │</span>
-            <span class="teal">│   ├── services/</span>
-            <span class="teal">│   │</span>
-            <span class="teal">│   ├── middleware/</span>
-            <span class="teal">│   │   └── validator</span>
-            <span class="teal">│   │   └── timezoneHandler</span>
-            <span class="teal">│   │   └── scopeHandler</span>
-            <span class="teal">│   │   └── languageHandler</span>
-            <span class="teal">│   │   └── emailHandler</span>
-            <span class="teal">│   │   └── notificationHandler</span>
-            <span class="teal">│   │   └── errorHandler</span>
-            <span class="teal">│   │</span>
-            <span class="teal">│   └── routes/</span>
-            <span class="teal">│   │   └── web</span>
-            <span class="teal">│   │   └── app</span>
-            <span class="teal">│   │   └── common</span>
-            <span class="teal">│   └── utils/</span>
-            <span class="teal">│   └── config/</span>
-            <span class="teal">│</span>
-            <span class="teal">├── locales/</span>
-            <span class="teal">├── schedulers/</span>
-            <span class="teal">│</span>
-            <span class="teal">├── prisma-shared/</span>
-            <span class="teal">│   └── prisma</span>
-            <span class="teal">│       └── migrations</span>
-            <span class="teal">│       └── seeder</span>
-            <span class="amber">│       └── schema.prisma</span>
-            <span class="teal">│</span>
-            <span class="teal">├── deployment/</span>
-            <span class="amber">│   └── deployment.yml</span>
-            <span class="teal">│</span>
-            <span class="amber">└── .env</span>
-            <span class="amber">└── .gitignore</span>
-            <span class="amber">└── .gitmodule</span>
-            <span class="amber">└── .pretierrc</span>
-            <span class="amber">└── tsconfig.json</span>
-            <span class="amber">└── package.json</span>
-            <span class="amber">└── ecosystem.config.js</span>
-            <span class="amber">└── eslint.config.mjs</span>
-            <span class="amber">└── firebase-service-account.json</span>
-            <span class="amber">└── README.md</span></pre>
+        <div class="arch-card d-flex justify-content-center">
+          <pre class="mb-0" style="color:inherit;text-align:left;"><span class="teal">backend-project/</span>
+<span class="teal">│</span>
+<span class="teal">├── src/</span>
+<span class="teal">│   └── const/</span>
+<span class="teal">│   │   └── entity/</span>
+<span class="teal">│   │   └── logic/</span>
+<span class="teal">│   │   └── responseMessage/</span>
+<span class="teal">│   │   └── selector/</span>
+<span class="teal">│   │</span>
+<span class="teal">│   └── controllers/</span>
+<span class="teal">│   │   └── modules/</span>
+<span class="amber">│   │       └── dao</span>
+<span class="amber">│   │       └── interface</span>
+<span class="amber">│   │       └── businessLogic</span>
+<span class="teal">│   │</span>
+<span class="teal">│   ├── services/</span>
+<span class="teal">│   │</span>
+<span class="teal">│   ├── middleware/</span>
+<span class="teal">│   │   └── validator</span>
+<span class="teal">│   │   └── timezoneHandler</span>
+<span class="teal">│   │   └── scopeHandler</span>
+<span class="teal">│   │   └── languageHandler</span>
+<span class="teal">│   │   └── emailHandler</span>
+<span class="teal">│   │   └── notificationHandler</span>
+<span class="teal">│   │   └── errorHandler</span>
+<span class="teal">│   │</span>
+<span class="teal">│   └── routes/</span>
+<span class="teal">│   │   └── web</span>
+<span class="teal">│   │   └── app</span>
+<span class="teal">│   │   └── common</span>
+<span class="teal">│   └── utils/</span>
+<span class="teal">│   └── config/</span>
+<span class="teal">│</span>
+<span class="teal">├── locales/</span>
+<span class="teal">├── schedulers/</span>
+<span class="teal">│</span>
+<span class="teal">├── prisma-shared/</span>
+<span class="teal">│   └── prisma</span>
+<span class="teal">│       └── migrations</span>
+<span class="teal">│       └── seeder</span>
+<span class="amber">│       └── schema.prisma</span>
+<span class="teal">│</span>
+<span class="teal">├── deployment/</span>
+<span class="amber">│   └── deployment.yml</span>
+<span class="teal">│</span>
+<span class="amber">└── .env</span>
+<span class="amber">└── .gitignore</span>
+<span class="amber">└── .gitmodule</span>
+<span class="amber">└── .prettierrc</span>
+<span class="amber">└── tsconfig.json</span>
+<span class="amber">└── package.json</span>
+<span class="amber">└── ecosystem.config.js</span>
+<span class="amber">└── eslint.config.mjs</span>
+<span class="amber">└── firebase-service-account.json</span>
+<span class="amber">└── README.md</span></pre>
         </div>
       </div>
-<div class="col-lg-4 fade-up fade-up-2">
+
+      <!-- Node.js Clean Architecture -->
+      <div class="col-lg-4">
         <h5 style="font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;">
           // Node.js Clean Architecture
         </h5>
-        <div class="arch-card">
-          <pre class="mb-0" style="color:inherit">
-            <span class="teal">Request</span>
-            ↓
-            <span class="amber">Middleware</span> <span class="muted">[ JWT · Validator · Redis ]</span>
-            ↓
-            <span class="teal">Controller</span>
-            ↓
-            <span class="amber">Service Layer</span> <span class="muted">[ Notification · Email ]</span>
-            ↓
-            <span class="teal">Interface Layer</span>
-            ↓
-            <span class="amber">DAO Layer</span>
-            ↓
-            <span class="teal">Prisma ORM</span> → <span class="amber">Database</span>
-            ↓
-            <span class="teal">Response</span> <span class="muted">[ JSON / File ]</span></pre>
+        <div class="arch-card d-flex justify-content-center">
+          <pre class="mb-0" style="color:inherit;text-align:center;"><span class="teal">Request</span>
+↓
+<span class="amber">Middleware</span>
+<span class="muted">[ JWT · Validator · Redis ]</span>
+↓
+<span class="teal">Controller</span>
+↓
+<span class="amber">Service Layer</span>
+<span class="muted">[ Notification · Email ]</span>
+↓
+<span class="teal">Interface Layer</span>
+↓
+<span class="amber">DAO Layer</span>
+↓
+<span class="teal">Prisma ORM</span> → <span class="amber">Database</span>
+↓
+<span class="teal">Response</span>
+<span class="muted">[ JSON / File ]</span></pre>
         </div>
       </div>
+
+      <!-- System Overview -->
       <div class="col-lg-4">
         <h5 style="font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;">
           // System Overview
         </h5>
-        <div class="arch-card">
-          <pre class="mb-0" style="color:inherit">
-<span class="amber">         IoT Devices</span>
-  ┌────────────┴────────────┐
-  │                         │
-<span class="teal">Face Scan Device</span>       <span class="teal">RFID Device</span>
-  │                         │
-  ▼                         ▼
-<span class="amber">3rd Party Cloud</span>      <span class="amber">Laravel API Endpoint</span>
-  │                         │
-  ▼                         ▼
-<span class="teal">VB6 Upload Client</span>    <span class="teal">Laravel Backend</span>
-<span class="muted">(Scheduled BAT Job)</span>        │
-  │                         ▼
-  ▼                   <span class="amber">MySQL Database</span>
-<span class="teal">PHP Web → MySQL</span>
+        <div class="arch-card d-flex justify-content-center">
+          <pre class="mb-0" style="color:inherit;text-align:center;"><span class="amber">IoT Devices</span>
+┌────────┴────────┐
+│                 │
+<span class="teal">Face Scan</span>     <span class="teal">RFID</span>
+│                 │
+▼                 ▼
+<span class="amber">3rd Party</span>   <span class="amber">Laravel API</span>
+│                 │
+▼                 ▼
+<span class="teal">VB6 Client</span>  <span class="teal">Laravel BE</span>
+<span class="muted">(BAT Job)</span>        │
+│                 ▼
+▼          <span class="amber">MySQL DB</span>
+<span class="teal">PHP → MySQL</span>
 
-<span class="muted">─────────────────────────────</span>
+<hr></hr>
 
-           <span class="amber">API Layer</span>
-               │
-         <span class="teal">Node.js + TS</span>
-    ┌──────────┴──────────┐
-<span class="amber">Middleware</span>          <span class="amber">Services</span>
-<span class="muted">JWT/Redis/Validator  Notify/Email</span>
-               │
-          <span class="teal">Prisma ORM</span>
-               │
-           <span class="amber">Database</span></pre>
+<span class="amber">API Layer</span>
+│
+<span class="teal">Node.js + TS</span>
+┌──────┴──────┐
+<span class="amber">Middleware</span>  <span class="amber">Services</span>
+<span class="muted">JWT/Redis  Notify</span>
+│
+<span class="teal">Prisma ORM</span>
+│
+<span class="amber">Database</span></pre>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <!-- ─────────────── FUTURE ─────────────── -->
 <section id="future" style="padding:5rem 0; background:var(--surface);">
-  <div class="container">
+  <div class="container text-center">
     <p class="section-tag">04 — Roadmap</p>
     <h2 class="section-title">Future <span class="accent">Improvements</span></h2>
     <div class="section-divider"></div>
-
     <div class="row g-3">
-
       <div class="col-md-6">
         <div class="future-item">
           <i class="bi bi-arrow-repeat future-icon"></i>
@@ -1040,7 +946,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-md-6">
         <div class="future-item">
           <i class="bi bi-diagram-3 future-icon"></i>
@@ -1050,7 +955,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-md-6">
         <div class="future-item">
           <i class="bi bi-boxes future-icon"></i>
@@ -1060,7 +964,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-md-6">
         <div class="future-item">
           <i class="bi bi-envelope-paper future-icon"></i>
@@ -1070,7 +973,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-md-6">
         <div class="future-item">
           <i class="bi bi-hdd-network future-icon"></i>
@@ -1080,7 +982,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-md-6">
         <div class="future-item">
           <i class="bi bi-shield-shaded future-icon"></i>
@@ -1090,7 +991,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -1107,11 +1007,13 @@
         PHP · Laravel · Node.js · TypeScript · AWS · MySQL
       </div>
       <div class="d-flex gap-3">
-        <a href="https://github.com/luciusfong" target="_blank" style="color:var(--muted);font-size:1.2rem;transition:color .2s;"
+        <a href="https://github.com/luciusfong" target="_blank"
+          style="color:var(--muted);font-size:1.2rem;transition:color .2s;"
           onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--muted)'">
           <i class="bi bi-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/terry-hng-zu-lun" target="_blank" style="color:var(--muted);font-size:1.2rem;transition:color .2s;"
+        <a href="https://www.linkedin.com/in/terry-hng-zu-lun" target="_blank"
+          style="color:var(--muted);font-size:1.2rem;transition:color .2s;"
           onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--muted)'">
           <i class="bi bi-linkedin"></i>
         </a>
@@ -1122,7 +1024,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  // Scroll-triggered fade-ins for sections
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1141,7 +1042,6 @@
     observer.observe(el);
   });
 
-  // Active nav link highlight on scroll
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
   window.addEventListener('scroll', () => {
@@ -1150,8 +1050,7 @@
       if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
     });
     navLinks.forEach(link => {
-      link.style.color = link.getAttribute('href') === '#' + current
-        ? 'var(--amber)' : '';
+      link.style.color = link.getAttribute('href') === '#' + current ? 'var(--amber)' : '';
     });
   });
 </script>
